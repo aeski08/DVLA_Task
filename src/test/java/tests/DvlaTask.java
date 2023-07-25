@@ -81,19 +81,12 @@ public class DvlaTask {
 
         // int countValid = 0;
         for (String[] row : excelData) {
-            String VRN = row[0];
+            String VRN = row[0].toUpperCase();
             String Make = row[1];
             String Colour = row[2];
             String dateOfManufacture = row[3];
 
-            // VRN validation
-            // if (VRN.matches("[A-Za-z]{2}\\d{2}[A-Za-z]{3}|[A-Za-z]{2}\\d{2}(\\s[A-Za-z]{3})?")) {
-            String regex = "^[A-Z]{2}\\d{2}(\\s?[A-Z]{3})?$";
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(VRN);
 
-            // VRN validation
-            if (matcher.matches()) {
                 // Make validation
                 if (makeValidation(Make)) {
                     // Colour validation
@@ -103,19 +96,34 @@ public class DvlaTask {
                         if (isValidDate(dateOfManufacture)) {
                             // System.out.println("dateOfManufacture = " + dateOfManufacture);
                             filteredList.add(new String[]{VRN, Make, Colour, dateOfManufacture, "valid"});
+                            // VRN validation
+                            if (vRNValidation(VRN));
+
+
 
                         } else {
                             filteredList.add(new String[]{VRN, Make, Colour, dateOfManufacture, "invalid"});
                         }
                     }
                 }
-            } else {
-                filteredList.add(new String[]{VRN, Make, Colour, dateOfManufacture, "invalid"});
-
-            }
         }
 
         return filteredList;
+    }
+
+    boolean vRNValidation(String VRN) {
+        String regex = "^[A-Z]{2}\\d{2}(\\s?[A-Z]{3})?$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(VRN);
+
+        boolean flag = false;
+
+        if (matcher.matches()) {
+            flag = true;
+        } else {
+            System.out.println(VRN + " is invalid VRN");
+        }
+        return flag;
     }
 
     boolean makeValidation(String Make) {
