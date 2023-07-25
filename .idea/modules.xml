@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Task_Dvla_AliOzturk.iml" filepath="$PROJECT_DIR$/Task_Dvla_AliOzturk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/DVLA_Task.iml" filepath="$PROJECT_DIR$/.idea/DVLA_Task.iml" />
     </modules>
   </component>
 </project>
